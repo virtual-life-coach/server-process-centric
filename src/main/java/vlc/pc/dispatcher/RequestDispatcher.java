@@ -8,16 +8,22 @@ import vlc.ldb.soap.LocalDatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class RequestDispatcher {
+
+    Logger log = Logger.getLogger(RequestDispatcher.class.getName());
 
     public static List<vlc.common.to.AppointmentTO> listAppointments(Integer telegramId) throws ServiceException {
         LocalDatabase service = new LocalDatabaseService().getLocalDatabaseImplPort();
         List<vlc.ldb.soap.AppointmentTO> appointmentsSoap = service.listAppointments();
         List<vlc.common.to.AppointmentTO> appointmentsTO = new ArrayList<>();
         SoapAppointmentTransformer transformer = new SoapAppointmentTransformer();
-        for (vlc.ldb.soap.AppointmentTO appointmentSoap : appointmentsSoap) { // TODO filter by telegramId
-            appointmentsTO.add(transformer.toTO(appointmentSoap));
+        vlc.ldb.soap.UserTO currentUser = service.getUserByTelegramId(telegramId);
+        for (vlc.ldb.soap.AppointmentTO appointmentSoap : appointmentsSoap) {
+            if (appointmentSoap.getUserId().equals(currentUser.getId())) {
+                appointmentsTO.add(transformer.toTO(appointmentSoap));
+            }
         }
         return appointmentsTO;
     }
@@ -27,8 +33,11 @@ public class RequestDispatcher {
         List<vlc.ldb.soap.UserActivityTO> userActivitiesSoap = service.listUserActivities();
         List<vlc.common.to.UserActivityTO> userActivitiesTO = new ArrayList<>();
         SoapUserActivityTransformer transformer = new SoapUserActivityTransformer();
-        for (vlc.ldb.soap.UserActivityTO userActivitySoap : userActivitiesSoap) { // TODO filter by telegramId
-            userActivitiesTO.add(transformer.toTO(userActivitySoap));
+        vlc.ldb.soap.UserTO currentUser = service.getUserByTelegramId(telegramId);
+        for (vlc.ldb.soap.UserActivityTO userActivitySoap : userActivitiesSoap) {
+            if (userActivitySoap.getUserId().equals(currentUser.getId())) {
+                userActivitiesTO.add(transformer.toTO(userActivitySoap));
+            }
         }
         return userActivitiesTO;
     }
@@ -40,10 +49,8 @@ public class RequestDispatcher {
         return transformer.toTO(userActivitySoap);
     }
 
-    public static void updateActivityProgress(Integer telegramId, Integer activityId, Long value)
-            throws ServiceException {
+    public static void updateActivityProgress(Integer activityId, Long value) throws ServiceException {
         LocalDatabase service = new LocalDatabaseService().getLocalDatabaseImplPort();
-        //service.updateUserActivity();
-        // TODO
+        service.updateUserActivityValue(activityId, value);
     }
 }

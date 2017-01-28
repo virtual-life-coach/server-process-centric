@@ -58,11 +58,11 @@ public class Function {
 
     @ApiMethod(
             name = "updateActivityProgress",
-            path = "activity/{telegramid}/{activityid}/{value}",
+            path = "activity/{activityid}/{value}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public void updateActivityProgress(@Named("telegramid") Integer telegramId, @Named("activityid") Integer activityId,
+    public void updateActivityProgress(@Named("activityid") Integer activityId,
                                        @Named("value") Long value) throws ServiceException {
-        log.info("updateActivityProgress " + telegramId + " " + activityId + " " + value);
-        RequestDispatcher.updateActivityProgress(telegramId, activityId, value);
+        log.info("updateActivityProgress " + activityId + " " + value);
+        RequestDispatcher.updateActivityProgress(activityId, value);
     }
 }
