@@ -6,8 +6,8 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import dispatcher.RequestDispatcher;
-import vlc.common.to.ActivityTO;
 import vlc.common.to.AppointmentTO;
+import vlc.common.to.UserActivityTO;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -30,7 +30,7 @@ public class Function {
 
     @ApiMethod(
             name = "listAppointments",
-            path = "appointment/{telegramid}",
+            path = "appointments/{telegramid}",
             httpMethod = ApiMethod.HttpMethod.GET)
     public List<AppointmentTO> listAppointments(@Named("telegramid") Integer telegramId) throws ServiceException {
         log.info("listAppointments " + telegramId);
@@ -39,21 +39,21 @@ public class Function {
 
     @ApiMethod(
             name = "listActivities",
-            path = "activity/{telegramid}",
+            path = "activities/{telegramid}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public List<ActivityTO> listActivities(@Named("telegramid") Integer telegramId) throws ServiceException {
+    public List<UserActivityTO> listActivities(@Named("telegramid") Integer telegramId) throws ServiceException {
         log.info("listActivities " + telegramId);
         return RequestDispatcher.listActivities(telegramId);
     }
 
     @ApiMethod(
             name = "getActivityProgress",
-            path = "activity/{telegramid}/{activityid}",
+            path = "activity/{activityid}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public ActivityTO getActivityProgress(@Named("telegramid") Integer telegramId, @Named("activityid") Integer activityId)
+    public UserActivityTO getActivityProgress(@Named("activityid") Integer activityId)
             throws ServiceException {
-        log.info("getActivityProgress " + telegramId + " " + activityId);
-        return RequestDispatcher.getActivityProgress(telegramId, activityId);
+        log.info("getActivityProgress " + activityId);
+        return RequestDispatcher.getActivityProgress(activityId);
     }
 
     @ApiMethod(

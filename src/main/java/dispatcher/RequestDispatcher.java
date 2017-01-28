@@ -1,8 +1,8 @@
 package dispatcher;
 
 import com.google.api.server.spi.ServiceException;
-import vlc.common.to.ActivityTO;
 import vlc.common.to.AppointmentTO;
+import vlc.common.to.UserActivityTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +17,17 @@ public class RequestDispatcher {
         return appointments;
     }
 
-    public static List<ActivityTO> listActivities(Integer telegramId) throws ServiceException {
+    public static List<UserActivityTO> listActivities(Integer telegramId) throws ServiceException {
         // TODO
-        List<ActivityTO> activities = new ArrayList<>();
-        activities.add(new ActivityTO(1, "Decription 1 for " + telegramId));
-        activities.add(new ActivityTO(2, "Decription 2 for " + telegramId));
+        List<UserActivityTO> activities = new ArrayList<>();
+        activities.add(new UserActivityTO(1, 1, 3, "details1", 100L, 10L, "tomorrow", false));
+        activities.add(new UserActivityTO(2, 2, 3, "details2", 100L, 5L, "tomorrow", true));
         return activities;
     }
 
-    public static ActivityTO getActivityProgress(Integer telegramId, Integer activityId) throws ServiceException {
+    public static UserActivityTO getActivityProgress(Integer activityId) throws ServiceException {
         // TODO
-        return new ActivityTO(activityId, "Current progress for " + telegramId + " activityId " + activityId);
+        return new UserActivityTO(4, 2, 3, "details", 50L, 10L, "tomorrow", false);
     }
 
     public static void updateActivityProgress(Integer telegramId, Integer activityId, Long value)
