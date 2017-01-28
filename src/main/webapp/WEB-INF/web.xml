@@ -6,7 +6,7 @@
         <servlet-class>com.google.api.server.spi.EndpointsServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>rest.Function</param-value>
+            <param-value>vlc.pc.rest.Function</param-value>
         </init-param>
     </servlet>
 

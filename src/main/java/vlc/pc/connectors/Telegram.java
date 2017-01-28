@@ -1,4 +1,4 @@
-package connectors;
+package vlc.pc.connectors;
 
 import vlc.common.to.TelegramMessageTO;
 
@@ -18,9 +18,5 @@ public class Telegram {
         request.accept(MediaType.APPLICATION_JSON);
         Response response = request.post(entity);
         return response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

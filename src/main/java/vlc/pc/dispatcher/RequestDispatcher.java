@@ -1,4 +1,4 @@
-package dispatcher;
+package vlc.pc.dispatcher;
 
 import com.google.api.server.spi.ServiceException;
 import vlc.common.to.AppointmentTO;

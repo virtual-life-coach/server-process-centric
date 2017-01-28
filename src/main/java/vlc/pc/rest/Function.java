@@ -1,11 +1,11 @@
-package rest;
+package vlc.pc.rest;
 
 import com.google.api.server.spi.ServiceException;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
-import dispatcher.RequestDispatcher;
+import vlc.pc.dispatcher.RequestDispatcher;
 import vlc.common.to.AppointmentTO;
 import vlc.common.to.UserActivityTO;
 
