@@ -12,8 +12,8 @@ public class RequestDispatcher {
     public static List<AppointmentTO> listAppointments(Integer telegramId) throws ServiceException {
         // TODO
         List<AppointmentTO> appointments = new ArrayList<>();
-        appointments.add(new AppointmentTO(1, "user" + telegramId, "doctor1", "date1", "location1"));
-        appointments.add(new AppointmentTO(2, "user" + telegramId, "doctor2", "date2", "location2"));
+        appointments.add(new AppointmentTO(1, telegramId, 123, "date1", "location1"));
+        appointments.add(new AppointmentTO(2, telegramId, 456, "date2", "location2"));
         return appointments;
     }
 
