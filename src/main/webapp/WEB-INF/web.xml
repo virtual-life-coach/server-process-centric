@@ -6,7 +6,7 @@
         <servlet-class>com.google.api.server.spi.EndpointsServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>rest.Entity</param-value>
+            <param-value>rest.Function</param-value>
         </init-param>
     </servlet>
 
@@ -36,7 +36,7 @@
         </init-param>
         <init-param>
             <param-name>endpoints.serviceName</param-name>
-            <param-value>process-centric-api.endpoints.${endpoints.project.id}.cloud.goog</param-value>
+            <param-value>server-process-centric-api.endpoints.${endpoints.project.id}.cloud.goog</param-value>
         </init-param>
     </filter>
 
