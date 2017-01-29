@@ -28,6 +28,13 @@ public class Function {
 
     private static final Logger log = Logger.getLogger(Function.class.getName());
 
+    /**
+     * GET method. Retrieve the list of future appointments for a specific user.
+     *
+     * @param telegramId user telegram id
+     * @return appointments list
+     * @throws ServiceException on malformed requests or back end error
+     */
     @ApiMethod(
             name = "listAppointments",
             path = "appointments/{telegramid}",
@@ -37,6 +44,13 @@ public class Function {
         return RequestDispatcher.listAppointments(telegramId);
     }
 
+    /**
+     * GET method. Retrieve the list of activities for a specific user.
+     *
+     * @param telegramId user telegram id
+     * @return activities list
+     * @throws ServiceException on malformed requests or back end error
+     */
     @ApiMethod(
             name = "listActivities",
             path = "activities/{telegramid}",
@@ -46,6 +60,13 @@ public class Function {
         return RequestDispatcher.listActivities(telegramId);
     }
 
+    /**
+     * GET method. Retrieve a user activity.
+     *
+     * @param activityId activity id
+     * @return activity
+     * @throws ServiceException on malformed requests or back end error
+     */
     @ApiMethod(
             name = "getActivityProgress",
             path = "activity/{activityid}",
@@ -56,6 +77,13 @@ public class Function {
         return RequestDispatcher.getActivityProgress(activityId);
     }
 
+    /**
+     * PUT method. Update the current value for a user activity.
+     *
+     * @param activityId activity id
+     * @param value new current activity value
+     * @throws ServiceException on malformed requests or back end error
+     */
     @ApiMethod(
             name = "updateActivityProgress",
             path = "activity/{activityid}/{value}",
